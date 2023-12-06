@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Text, View, SafeAreaView, StyleSheet } from 'react-native';
-import { TextInput, Button, List, Modal } from 'react-native-paper';
+import { TextInput, Button, List, Modal, IconButton } from 'react-native-paper';
 import { auth } from "../firebaseConfig";
 import { signOut } from "firebase/auth";
 
 export default function DetailScreen ({ navigation, route }) {
+const { firstName, lastName, email } = route.params;
 const [visible, setVisible] = useState();
 const showModal = () => setVisible(true);
 const hideModal = () => setVisible(false);
@@ -31,6 +32,8 @@ const signUserOut = () => {
             </Button>
 
             <Text style={styles.header}>Thank you for signing in </Text>
+            <IconButton icon="account-circle-outline" style={styles.icon} size={110} ></IconButton>
+            <Text style={styles.name}> {JSON.stringify(firstName)} {JSON.stringify(lastName)} {JSON.stringify(email)}</Text>
 
             <Button style={styles.bottombutton} onPress={showModal} mode="contained">
             Sign Out
@@ -73,12 +76,18 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 20,
     },
+    name: {
+        textAlign: 'center',
+    }, 
+    icon: {
+        marginLeft: 135
+    },
     button: {
         marginBottom: 10,
         backgroundColor: '#692a96',
     },
     bottombutton: {
         backgroundColor: '#692a96',
-        marginTop: 570,
+        marginTop: 400,
     }
 });

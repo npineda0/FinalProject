@@ -27,7 +27,9 @@ const signInUser = async () => {
             setSignInEmailAddress("");
             setSignInPassword("");
             setLoading(false);
-            navigation.navigate("detail");
+            navigation.navigate("detail",{
+                email: signInEmailAddress
+            });
         })
         .catch((error) => {
             setLoading(false);
@@ -51,7 +53,10 @@ const createUser = async () => {
             setUserEmail("");
             setUserPassword("");
             setLoading(false);
-            navigation.navigate("detail");
+            navigation.navigate("detail", {
+                firstName: userFirstName,
+                lastName: userLastName
+            });
         })
         .catch((error) => {
             console.log("error ", error.message); 
